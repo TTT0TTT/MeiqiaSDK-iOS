@@ -117,9 +117,7 @@ static const NSInteger kMQTextCellSelectedEmailActionSheetTag = 2002;
     if (cellModel.numberRangeDic.count > 0) {
         for (NSString *key in cellModel.numberRangeDic.allKeys) {
             NSRange range = [cellModel.numberRangeDic[key] rangeValue];
-            if (range.location + range.length < key.length) {
-                [textLabel addLinkToPhoneNumber:key withRange:[cellModel.numberRangeDic[key] rangeValue]];
-            }
+            [textLabel addLinkToPhoneNumber:key withRange:[cellModel.numberRangeDic[key] rangeValue]];
         }
     }
     if (cellModel.linkNumberRangeDic.count > 0) {
