@@ -263,10 +263,12 @@
         //计算cell的高度
         self.cellHeight = self.bubbleImageFrame.origin.y + self.bubbleImageFrame.size.height + kMQCellAvatarToVerticalEdgeSpacing;
         
+        NSString *contentMessage = [MQServiceToViewInterface convertToUnicodeWithEmojiAlias:message.content];
+        
         //匹配消息文字中的正则
-        self.numberRangeDic = [self createRegexMap:[MQChatViewConfig sharedConfig].numberRegexs for:message.content];
-        self.linkNumberRangeDic = [self createRegexMap:[MQChatViewConfig sharedConfig].linkRegexs for:message.content];
-        self.emailNumberRangeDic = [self createRegexMap:[MQChatViewConfig sharedConfig].emailRegexs for:message.content];
+        self.numberRangeDic = [self createRegexMap:[MQChatViewConfig sharedConfig].numberRegexs for:contentMessage];
+        self.linkNumberRangeDic = [self createRegexMap:[MQChatViewConfig sharedConfig].linkRegexs for:contentMessage];
+        self.emailNumberRangeDic = [self createRegexMap:[MQChatViewConfig sharedConfig].emailRegexs for:contentMessage];
         
         //防止邮件地址被解析为连接地址
         NSMutableDictionary *tempLinkNumberRangDic = [self.linkNumberRangeDic mutableCopy];
